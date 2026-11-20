@@ -4,11 +4,19 @@ import { titleFont } from '@/src/config/fonts'
 import Link from 'next/link'
 import { IoCartOutline, IoSearchOutline } from 'react-icons/io5'
 
-import { useUIStore } from '@/src/store'
+import { useCartStore, useUIStore } from '@/src/store'
+import { useEffect, useState } from 'react'
 
 export const TopMenu = () => {
 
-   const openSideMenu = useUIStore ( state => state.openSideMenu )
+    const openSideMenu = useUIStore ( state => state.openSideMenu )
+    const totalItemsInCart = useCartStore( state => state.getTotalItems() )
+
+    const [loaded, setLoaded] = useState(false); 
+
+   useEffect(() => {
+    setLoaded(true)
+   })
 
   return (
     
@@ -38,7 +46,11 @@ export const TopMenu = () => {
           <Link className="x-2" href={"/cart"}>
             <div className='relative'>
               <IoCartOutline className='w-5 h-5'/>
-              <span className='absolute text-xs rounded-full px-1 font-bold -top-2 bg-blue-700 text-white -right-2'>3</span>
+              {
+                (loaded && totalItemsInCart > 0) && (
+                  <span className='absolute text-xs rounded-full px-1 font-bold -top-2 bg-blue-700 text-white -right-2'>{ totalItemsInCart }</span>
+                )
+              }      
             </div>
           </Link>
           

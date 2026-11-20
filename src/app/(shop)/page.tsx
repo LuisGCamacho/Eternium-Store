@@ -1,5 +1,7 @@
-import { Products, Title } from "@/src/components";
+
+import { Pagination, Products, Title } from "@/src/components";
 import { Suspense } from "react";
+
 
 interface Props {
   searchParams: Promise<{
@@ -18,7 +20,7 @@ export default function Home({ searchParams }: Props) {
         className="mb-1"
       />
 
-      {/* Main Products */}
+      {/* Main Products and Pagination*/}
       <Suspense fallback={<p>Loading products...</p>}>
         <Products searchParams={ searchParams } />
       </Suspense>

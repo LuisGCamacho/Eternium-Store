@@ -6,7 +6,10 @@ import { geistMono, geistSans } from "../config/fonts";
 
 
 export const metadata: Metadata = {
-  title: "Eternium",
+  title: {
+    template: "%s - Eternium",
+    default: "Home - Eternium"
+  },
   description:
     "Descubre Eternium, una tienda de ropa donde el estilo, la calidad y la autenticidad se unen para crear una forma única de vestir.",
 };
