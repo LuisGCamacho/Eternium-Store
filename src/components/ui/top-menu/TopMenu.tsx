@@ -43,12 +43,16 @@ export const TopMenu = () => {
             <IoSearchOutline className='w-5 h-5'/>
           </Link>
           {/* Cart */}
-          <Link className="x-2" href={"/cart"}>
+          <Link className="x-2" href={
+              ((totalItemsInCart === 0) && loaded)
+              ? "/empty"
+              : "/cart"
+              }>
             <div className='relative'>
               <IoCartOutline className='w-5 h-5'/>
               {
                 (loaded && totalItemsInCart > 0) && (
-                  <span className='absolute text-xs rounded-full px-1 font-bold -top-2 bg-blue-700 text-white -right-2'>{ totalItemsInCart }</span>
+                  <span className='fade-in absolute text-xs rounded-full px-1 font-bold -top-2 bg-blue-700 text-white -right-2'>{ totalItemsInCart }</span>
                 )
               }      
             </div>

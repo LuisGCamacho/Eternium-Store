@@ -10,6 +10,8 @@ export const ProductsInCart = () => {
 
     const [loaded, setLoaded] = useState(false)
     const productsInCart = useCartStore ( state => state.cart  )
+    const updateProductQuantity = useCartStore( state => state.updatedProductQuantity )
+    const removeProduct = useCartStore( state => state.removeProduct)
 
     useEffect(() => {
         setLoaded(true)
@@ -47,10 +49,15 @@ export const ProductsInCart = () => {
                     <p>${ product.price }</p>
 
                     {/* Quantity */}
-                    <QuantitySelector quantity={3} onQuantityChanged={value => console.log(value)}/>
+                    <QuantitySelector quantity={product.quantity} onQuantityChanged={quantity => updateProductQuantity(product, quantity)}/>
 
                     {/* Button*/}
-                    <button className="underline m-3 cursor-pointer">Remover</button>
+                    <button 
+                        className="underline m-3 cursor-pointer"
+                        onClick={() => removeProduct(product)}
+                    >
+                        Remover
+                    </button>
 
                   </div>
               </div>
